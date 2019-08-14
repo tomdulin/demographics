@@ -17,7 +17,7 @@ When you're ready to start the server you may:
 * `bundle exec rails s` and visit `http://localhost:3000/populations`
 
 If you submit a year (eg, 1950), you'll be returned a population for the United
-States at that particular time. 
+States at that particular time.
 
 ### Values
 
@@ -71,7 +71,7 @@ to the same page.
 
 Emergency!! Our biggest client needs to know the population for 2045, but we
 don't have any data for that. *And*, it's in the future. The CEO remembers a
-lesson in kindergarten about exponential growth models and suggested we try that.
+a recent article they read about exponential growth models and suggested we try that.
 
 Please update the application to be able to respond to queries after 1990,
 using a exponential growth model for those years.
@@ -103,8 +103,8 @@ and which were calculated mathmatically. Call it "exact" vs "calculated"
 
 Ugghhh. Data is a powerful thing. Now CEO wants to know which of the "exact"
 years are the most popular. He seems to think that everyone wants to know about
-1973, the year he was born. He also remembered a database lesson from 2nd grade
-and said something about using a "JOIN".
+1973, the year he was born. He also remembered a database lesson from a
+conference he attended and said something about using a "JOIN".
 
 Please add a table to the_logz that displays each of the years from the seed
 data and how many requests have been made. Use "the JOINs".
