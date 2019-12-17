@@ -9,6 +9,9 @@ class PopulationsController < ApplicationController
 
   def show
     @population = @year.nil? ? 0 : PopulationCalculatedLinear.call(@year)
+    respond_to do |format|
+      format.js {render_ajax_data}
+    end
   end
 
   def population_params

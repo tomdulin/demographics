@@ -15,12 +15,14 @@ RSpec.describe 'Get population by year', type: :system do
       fill_in 'population[year]',	with: '1991'
       click_button 'Submit'
       expect(page).to have_text('You requested the population for: 1991')
+      assert_ajax
     end
     it 'shows a population figure' do
       visit populations_path
       fill_in 'population[year]',	with: '1991'
       click_button 'Submit'
       expect(page).to have_text('Population: 248709873')
+      assert_ajax
     end
   end
   describe 'When user enters an invalid year' do
@@ -29,6 +31,7 @@ RSpec.describe 'Get population by year', type: :system do
       fill_in 'population[year]',	with: '19ww91'
       click_button 'Submit'
       expect(page).to have_text('Population: 248709873')
+      assert_ajax
     end
 
     it 'shows 0 population for invalid characters' do
@@ -36,6 +39,14 @@ RSpec.describe 'Get population by year', type: :system do
       fill_in 'population[year]',	with: 'alskdflk'
       click_button 'Submit'
       expect(page).to have_text('Population: 0')
+      assert_ajax
+    end
+
+    it 'shows 0 population for no input' do
+      visit populations_path
+      click_button 'Submit'
+      expect(page).to have_text('Population: 0')
+      assert_ajax
     end
 
     it 'does not allow xss' do
@@ -43,6 +54,14 @@ RSpec.describe 'Get population by year', type: :system do
       fill_in 'population[year]',	with: '><script>alert("XSS")</script>&'
       click_button 'Submit'
       expect(page).not_to have_content('Population:')
+      assert_ajax
     end
+  end
+
+  private
+
+  def assert_ajax
+    assert_selector "input[name='population[year]']"
+    assert_selector 'input[type=submit]'
   end
 end

@@ -1,8 +1,10 @@
 <h1>Get your population numbers here</h1>
-<%= form_for @population, url: populations_by_year_path, html: {method: :get}  do |f| %>
+<%= form_for @population, url: populations_by_year_path, remote: true, html: {method: :get}  do |f| %>
   <div class="field">
-    <%= f.label :quantity %>
+    <%= f.label :Year %>
     <%= f.number_field :year %>
     <%= f.submit "Submit" %>
   </div>
 <% end %>
+<br>
+<div id="results_container"></div>
