@@ -1,7 +1,7 @@
 class CreatePopulations < ActiveRecord::Migration[5.2]
   def change
     create_table :populations do |t|
-      t.date :year
+      t.integer :year
       t.bigint :population
 
       t.timestamps

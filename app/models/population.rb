@@ -1,23 +1,11 @@
 class Population < ApplicationRecord
+  scope :min_year, -> { minimum(:year) }
 
-  def self.min_year
-    Population.all.map(&:year).min.year
-  end
-
+  # return 0 if year is before earliest known year
+  # return latest if year is after all known years
+  # return previous year if year is not known
   def self.get(year)
     year = year.to_i
-
-    return 0 if year < min_year
-
-    pop = nil
-    until pop
-      pop = Population.find_by_year(Date.new(year))
-      year = year - 1
-    end
-
-    return pop.population if pop
-
-    nil
+    year < Population.min_year ? 0 : Population.where(year: Float::INFINITY..year).order(year: :desc).pluck(:population).first
   end
-
 end
