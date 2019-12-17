@@ -14,19 +14,9 @@ RSpec.describe PopulationCalculatedLinear do
     expect(PopulationCalculatedLinear.call(1941)).to eq(134_080_691)
   end
 
-  it 'should accept a year that is before earliest known and return zero' do
-    expect(PopulationCalculatedLinear.call(1800)).to eq(0)
-    expect(PopulationCalculatedLinear.call(0)).to eq(0)
-    expect(PopulationCalculatedLinear.call(-1000)).to eq(0)
-  end
-
   it 'should accept a year that is after latest known and return the last known population' do
-    expect(PopulationCalculatedLinear.call(2000)).to eq(248_709_873)
-    expect(PopulationCalculatedLinear.call(200_000)).to eq(248_709_873)
-  end
-
-  it 'should accept a year that is after latest known and return the last known population' do
-    expect(PopulationCalculatedLinear.call(2000)).to eq(248_709_873)
-    expect(PopulationCalculatedLinear.call(200_000)).to eq(248_709_873)
+    expect(PopulationCalculatedLinear.call(1991)).to be_nil
+    expect(PopulationCalculatedLinear.call(2000)).to be_nil
+    expect(PopulationCalculatedLinear.call(200_000)).to be_nil
   end
 end

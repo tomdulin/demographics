@@ -19,18 +19,18 @@ RSpec.describe 'Get population by year', type: :system do
     end
     it 'shows a population figure' do
       visit populations_path
-      fill_in 'population[year]',	with: '1991'
+      fill_in 'population[year]',	with: '1990'
       click_button 'Submit'
-      expect(page).to have_text('Population: 248709873')
+      expect(page).to have_text('Population: 248,709,873')
       assert_ajax
     end
   end
   describe 'When user enters an invalid year' do
     it 'ignores characters' do
       visit populations_path
-      fill_in 'population[year]',	with: '19ww91'
+      fill_in 'population[year]',	with: '19ww90'
       click_button 'Submit'
-      expect(page).to have_text('Population: 248709873')
+      expect(page).to have_text('Population: 248,709,873')
       assert_ajax
     end
 

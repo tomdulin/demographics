@@ -66,6 +66,10 @@ GEM
     concurrent-ruby (1.1.5)
     crass (1.0.5)
     diff-lcs (1.3)
+    dotenv (2.7.5)
+    dotenv-rails (2.7.5)
+      dotenv (= 2.7.5)
+      railties (>= 3.2, < 6.1)
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.11.3)
@@ -135,9 +139,6 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     regexp_parser (1.6.0)
-    responders (3.0.0)
-      actionpack (>= 5.0)
-      railties (>= 5.0)
     rspec-core (3.9.0)
       rspec-support (~> 3.9.0)
     rspec-expectations (3.9.0)
@@ -206,6 +207,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.12)
   chromedriver-helper
+  dotenv-rails
   jbuilder (~> 2.5)
   jquery-rails
   pg (>= 0.18, < 2.0)
@@ -213,7 +215,6 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.11)
   rails (~> 5.2.2)
-  responders
   rspec-rails (~> 3.8)
   sass-rails (~> 5.0)
   selenium-webdriver

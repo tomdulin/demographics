@@ -14,6 +14,15 @@ RSpec.describe Population, type: :model do
     end
   end
 
+  context ':last_known' do
+    it 'should return the last known population''s year' do
+      expect(Population.last_known.year).to eq(1990)
+    end
+    it 'should return the last known population''s population' do
+      expect(Population.last_known.population).to eq(248_709_873)
+    end
+  end
+
   context ':next_known' do
     it 'should return the population for the next known population' do
       expect(Population.next_known(1945).year).to eq(1950)
