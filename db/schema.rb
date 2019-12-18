@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_24_180609) do
+ActiveRecord::Schema.define(version: 2019_12_17_233819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 2019_07_24_180609) do
     t.bigint "population"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "the_logz", force: :cascade do |t|
+    t.integer "year"
+    t.string "population"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["year", "population"], name: "index_the_logz_on_year_and_population"
+    t.index ["year"], name: "index_the_logz_on_year"
   end
 
 end

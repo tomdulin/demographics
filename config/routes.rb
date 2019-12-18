@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :the_logz, only: [:index] 
   resources :populations, only: [:index] 
   get 'populations/by_year', to: 'populations#show'
   root to: "populations#index"

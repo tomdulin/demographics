@@ -9,3 +9,8 @@ Population.create(year: 1960, population: 179_323_175)
 Population.create(year: 1970, population: 203_302_031)
 Population.create(year: 1980, population: 226_542_199)
 Population.create(year: 1990, population: 248_709_873)
+
+TheLog.create(year: 1970, population: 203_302_031)
+TheLog.create(year: 1980, population: 226_542_199)
+TheLog.create(year: 1990, population: 248_709_873)
+TheLog.create(year: 2500, population: "3042334591789847255877419008")

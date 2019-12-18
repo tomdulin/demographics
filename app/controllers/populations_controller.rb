@@ -9,6 +9,7 @@ class PopulationsController < ApplicationController
 
   def show
     @population = @year.nil? ? 0 : calculate_population
+    TheLog.create(population: @population, year: population_params[:year])
     respond_to do |format|
       format.js {render_ajax_data}
     end
