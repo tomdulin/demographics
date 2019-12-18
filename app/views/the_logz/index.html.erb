@@ -1,7 +1,13 @@
 
+
+ 
 <div class="side_by_side">
  <%= render partial: "the_logz" %>
 </div>
 <div class="side_by_side">
  <%= render partial: "aggregates" %>
  </div>
+ <div>Last refreshed: <%= time_ago_in_words(DateTime.now) %></div>
+
+
+ <script language="javascript" type="text/javascript">setTimeout("location.reload();",10000);</script>

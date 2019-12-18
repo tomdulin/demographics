@@ -5,5 +5,6 @@ class TheLogzController < ApplicationController
   def index
     @the_logz = TheLog.all.order(created_at: :desc)
     @the_countz = AggregateKnownYears.call || []
+    
   end
 end
