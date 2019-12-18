@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Population < ApplicationRecord
   scope :min_year, -> { minimum(:year) }
   scope :max_year, -> { maximum(:year) }

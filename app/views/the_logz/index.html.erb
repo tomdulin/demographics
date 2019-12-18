@@ -7,16 +7,18 @@
     <tr>
       <th>Year</th>
       <th>Population</th>
+      <th>Calculated</th>
       <th>Created At</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @the_logz.each do |the_logz| %>
+    <% @the_logz.each do |the_log| %>
       <tr>
-        <td><%= the_logz.year %></td>
-        <td><%= number_with_delimiter(the_logz.population) %></td>
-        <td><%= to_pst(the_logz.created_at) %></td>
+        <td><%= the_log.year %></td>
+        <td><%= number_with_delimiter(the_log.population) %></td>
+        <td><%= the_log.calculation_method%></td>
+        <td><%= to_pst(the_log.created_at) %></td>
       </tr>
     <% end %>
   </tbody>

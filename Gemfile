@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'dotenv-rails'  # loads the .env file
 
+
+gem 'font-awesome-rails'   	  	# icons
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

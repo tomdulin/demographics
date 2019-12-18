@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_17_233819) do
+ActiveRecord::Schema.define(version: 2019_12_18_021538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2019_12_17_233819) do
     t.string "population"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "calculation_method", default: 1
     t.index ["year", "population"], name: "index_the_logz_on_year_and_population"
     t.index ["year"], name: "index_the_logz_on_year"
   end

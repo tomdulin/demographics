@@ -9,7 +9,7 @@ class PopulationsController < ApplicationController
 
   def show
     @population = @year.nil? ? 0 : calculate_population
-    TheLog.create(population: @population, year: population_params[:year])
+    log
     respond_to do |format|
       format.js {render_ajax_data}
     end
@@ -35,6 +35,16 @@ class PopulationsController < ApplicationController
     else
       return PopulationCalculatedExponential.call(@year)
     end
+  end
+
+  def log
+    TheLog.create(population: @population, 
+                        year: population_params[:year],
+                        calculation_method: calculated)
+  end
+
+  def calculated
+    Population.where(year: @year).empty? ? 1 : 0
   end
 
   def max_calculated_year_allowed

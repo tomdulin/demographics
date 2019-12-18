@@ -8,5 +8,6 @@ RSpec.describe 'Get population by year', type: :system do
     expect(page).to have_text('Year')
     expect(page).to have_text('Population')
     expect(page).to have_text('Created At')
+    expect(page).to have_text('Calculated')
   end
 end
