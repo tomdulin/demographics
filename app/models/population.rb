@@ -3,6 +3,8 @@ class Population < ApplicationRecord
   scope :max_year, -> { maximum(:year) }
   scope :last_known, -> { order(year: :desc).first }
 
+  has_many :logz, class_name: "TheLog", foreign_key: "year", primary_key: "year"
+
   def self.next_known(year)
     Population.where(year: year..Float::INFINITY).order(:year).first
   end

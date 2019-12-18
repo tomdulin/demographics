@@ -1,27 +1,7 @@
-<p id="notice"><%= notice %></p>
 
-<h1>The Logz</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Year</th>
-      <th>Population</th>
-      <th>Calculated</th>
-      <th>Created At</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @the_logz.each do |the_log| %>
-      <tr>
-        <td><%= the_log.year %></td>
-        <td><%= number_with_delimiter(the_log.population) %></td>
-        <td><%= the_log.calculation_method%></td>
-        <td><%= to_pst(the_log.created_at) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
+<div class="side_by_side">
+ <%= render partial: "the_logz" %>
+</div>
+<div class="side_by_side">
+ <%= render partial: "aggregates" %>
+ </div>

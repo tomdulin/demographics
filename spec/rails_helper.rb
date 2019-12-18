@@ -60,7 +60,9 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.before(:suite) do
-    Rails.application.load_seed # loading seeds
+    system('bundle exec rails db:test_wipe RAILS_ENV=test')
+    
+    # Rails.application.load_seed # loading seeds
   end
 
 end

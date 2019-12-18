@@ -14,6 +14,9 @@ RSpec.describe "the_logz/index", type: :view do
         :calculation_method => 1
       )
     ])
+    assign(:the_countz, [
+      [1990,1]
+    ])
   end
 
   it "renders a list of the_logz" do
@@ -21,4 +24,5 @@ RSpec.describe "the_logz/index", type: :view do
     assert_select "tr>td", :text => 2.to_s, :count => 1
     assert_select "tr>td", :text => "".to_s, :count => 2
   end
+
 end

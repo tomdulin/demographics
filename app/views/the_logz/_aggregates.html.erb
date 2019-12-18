@@ -1,0 +1,21 @@
+<h1>Known Usage</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Called</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @the_countz.each do |year, cnt| %>
+      <tr>
+        <td><%= year %></td>
+        <td><%= cnt %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
