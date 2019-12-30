@@ -1,10 +1,21 @@
 <h1>Get your population numbers here</h1>
 <%= form_for @population, url: populations_by_year_path, remote: true, html: {method: :get}  do |f| %>
+  <%= hidden_field_tag :max_known, @max_known_year %>
   <div class="field">
     <%= f.label :Year %>
     <%= f.number_field :year %>
-    <%= f.submit "Submit" %>
   </div>
+  <fieldset id="hidden_calc">
+  <legend> Preferred Calculation Method</legend>
+    <ul class="radio-button-field">
+    <li><%= radio_button_tag :calculation, 'logistical', true %>
+    <%= f.label :Logistical %></li>
+    <li><%= radio_button_tag :calculation, 'exponential', false %>
+    <%= f.label :Exponential %></li>
+    </ul>
+    </fieldset>
+
+    <%= f.submit "Submit" %>
 <% end %>
 <br>
 <div id="results_container"></div>

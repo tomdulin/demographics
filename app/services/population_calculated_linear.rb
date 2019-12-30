@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PopulationCalculatedLinear
   class << self
     include Service
@@ -10,12 +8,12 @@ class PopulationCalculatedLinear
     def call(year)
       previous_year = Population.previous_known(year)
 
-      return previous_year.population if previous_year.year == year      # year entered is known
+      return previous_year.population if previous_year.year == year # year entered is known
 
       next_year = Population.next_known(year)
 
       # there is no next year - unable to calculate
-      return nil if next_year.nil?                                       
+      return nil if next_year.nil?
 
       # calculate the percentage that year is between next and previous years
       mod_percentage = (year - previous_year.year).to_f / (next_year.year - previous_year.year).to_f

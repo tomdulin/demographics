@@ -48,12 +48,24 @@ RSpec.describe PopulationsController, type: :controller do
     it "returns valid population for year after last known" do
       get :show, params: { population: {year: '2000'} }, xhr: true
       expect(response.content_type).to eq "text/javascript"
+      expect(response.body).to match /Population: 284,104,505/im
+    end
+
+    it "returns valid population for year after last known" do
+      get :show, params: { population: {year: '2000'}, calculation:'exponential' }, xhr: true
+      expect(response.content_type).to eq "text/javascript"
       expect(response.body).to match /Population: 588,786,718/im
+    end
+
+    it "returns valid population for year after last known and max allowed" do
+      get :show, params: { population: {year: '3000'} }, xhr: true
+      expect(response.content_type).to eq "text/javascript"
+      expect(response.body).to match /Population: 750,000,000/im
     end
 
 
     it "returns valid population for year after last known and max allowed" do
-      get :show, params: { population: {year: '3000'} }, xhr: true
+      get :show, params: { population: {year: '3000'}, calculation: 'exponential' }, xhr: true
       expect(response.content_type).to eq "text/javascript"
       expect(response.body).to match /Population: 3,042,334,591,789,847,255,877,419,008/im
     end

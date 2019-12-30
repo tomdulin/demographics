@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PopulationCalculatedExponential
   class << self
     include Service
@@ -9,7 +7,7 @@ class PopulationCalculatedExponential
       max_known_year = Population.last_known
       delta_years_to_calculate = year - max_known_year.year
 
-      (assumed_yearly_growth ** delta_years_to_calculate * max_known_year.population).to_i 
+      (assumed_yearly_growth**delta_years_to_calculate * max_known_year.population).to_i
     end
 
     private

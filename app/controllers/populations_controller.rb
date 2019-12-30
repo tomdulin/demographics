@@ -1,22 +1,25 @@
-# frozen_string_literal: true
-
 class PopulationsController < ApplicationController
   before_action :set_year, only: [:show]
+  before_action :max_known
 
   def index
-    @population = Population.new 
+    @population = Population.new
   end
 
   def show
     @population = @year.nil? ? 0 : calculate_population
     log
     respond_to do |format|
-      format.js {render_ajax_data}
+      format.js { render_ajax_data }
     end
   end
 
   def population_params
     params.require(:population).permit(:year)
+  end
+
+  def calculation_params
+    params.permit(:calculation)
   end
 
   private
@@ -28,26 +31,35 @@ class PopulationsController < ApplicationController
   end
 
   def calculate_population
-    if @year < Population.min_year                            # no previous year
-      return 0
-    elsif @year <= Population.max_year
-      return PopulationCalculatedLinear.call(@year) 
+    if @year < Population.min_year # no previous year
+      @calculation = 4
+      0
+    elsif Population.where(year: @year).any?
+      @calculation = 0
+      Population.find_by(year: @year).population
+    elsif @year <= max_known
+      @calculation = 3
+      PopulationCalculatedLinear.call(@year)
+    elsif calculation_params[:calculation].eql?("exponential")
+      @calculation = 2
+      PopulationCalculatedExponential.call(@year)
     else
-      return PopulationCalculatedExponential.call(@year)
+      @calculation = 1
+      PopulationCalculatedLogistical.call(@year)
     end
   end
 
   def log
-    TheLog.create(population: @population, 
-                        year: population_params[:year],
-                        calculation_method: calculated)
+    TheLog.create(population: @population,
+                  year: population_params[:year],
+                  calculation_method: @calculation)
   end
 
-  def calculated
-    Population.where(year: @year).empty? ? 1 : 0
+  def max_known
+    @max_known_year ||= Population.max_year
   end
 
   def max_calculated_year_allowed
-   @max_allowed ||= ENV['MAX_CALCULATED_YEAR'].to_i
+    @max_allowed ||= ENV['MAX_CALCULATED_YEAR'].to_i
   end
 end

@@ -1,3 +1,3 @@
 class TheLog < ApplicationRecord
-  enum calculation_method: %w[exact calculated]
+  enum calculation_method: %w[exact logistical exponential linear uknown]
 end
