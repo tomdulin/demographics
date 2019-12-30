@@ -10,21 +10,44 @@ RSpec.describe 'Get population by year', type: :system do
   end
 
   describe 'When user enters a valid year' do
-    it 'redirects to a results page' do
+    it 'opens results with known year' do
       visit populations_path
-      fill_in 'population[year]',	with: '1991'
+      fill_in 'population[year]',	with: '1980'
       click_button 'Submit'
-      expect(page).to have_text('You requested the population for: 1991')
+      expect(page).to have_text('You requested the population for: 1980')
       assert_ajax
     end
+
+    it 'calculation options is not present when page is opened' do
+      visit populations_path
+      expect(page).to have_selector('#exponential', visible: false)
+    end
+
+    it 'opens calculations options when valid input is entered' do
+      visit populations_path
+      fill_in 'population[year]',	with: '1991'
+      expect(page).to have_selector('#exponential', visible: true)
+    end
+
+    it 'opens results to a results page' do
+      visit populations_path
+      fill_in 'population[year]',	with: '1991'
+      choose('exponential')
+      click_button 'Submit'
+      expect(page).to have_text('Population: 271,093,761')
+      assert_ajax
+    end
+
     it 'shows a population figure' do
       visit populations_path
       fill_in 'population[year]',	with: '1990'
+
       click_button 'Submit'
       expect(page).to have_text('Population: 248,709,873')
       assert_ajax
     end
   end
+  
   describe 'When user enters an invalid year' do
     it 'ignores characters' do
       visit populations_path

@@ -5,6 +5,7 @@ class Population < ApplicationRecord
 
   has_many :logz, class_name: 'TheLog', foreign_key: 'year', primary_key: 'year'
 
+  # functions to return next and previous known entries given a year
   def self.next_known(year)
     Population.where(year: year..Float::INFINITY).order(:year).first
   end

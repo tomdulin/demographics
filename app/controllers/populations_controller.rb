@@ -40,7 +40,7 @@ class PopulationsController < ApplicationController
     elsif @year <= max_known
       @calculation = 3
       PopulationCalculatedLinear.call(@year)
-    elsif calculation_params[:calculation].eql?("exponential")
+    elsif calculation_params[:calculation].eql?('exponential')
       @calculation = 2
       PopulationCalculatedExponential.call(@year)
     else
